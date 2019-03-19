@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 const list = [
   {
-    id: 0,
+    id: '0',
+    key: '0',
     title: 'Comida',
     flashcards: [
       {
@@ -24,7 +25,8 @@ const list = [
     ]
   },
   {
-    id: 1,
+    id: '1',
+    key: '1',
     title: 'Animais',
     flashcards: [
       {

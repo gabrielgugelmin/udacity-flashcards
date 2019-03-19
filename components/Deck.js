@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import DeckComp from './DeckComp'
-// import DeckFeat from './DeckFeat';
 
-class DeckView extends Component {
+class Deck extends Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -20,4 +19,4 @@ class DeckView extends Component {
   }
 }
 
-export default DeckView;
+export default Deck;
