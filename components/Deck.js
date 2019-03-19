@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { Button } from './Button';
 
 class Deck extends Component {
 
@@ -27,11 +28,19 @@ class Deck extends Component {
     });
   }
 
+  startQuiz = () => {
+    this.props.navigation.navigate('Quiz', {
+      id: this.state.id,
+    });
+  }
+
   render() {
     return (
       <View>
         <Text>{this.state.title}</Text>
-        <Text>{this.state.flashcards}</Text>
+        <Text>{`${this.state.flashcards} cards`}</Text>
+        <Button title={'Add Card'} />
+        <Button title={'Start Quiz'} onPress={this.startQuiz} />
       </View>
     );
   }
