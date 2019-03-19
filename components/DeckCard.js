@@ -4,7 +4,7 @@ import colors from '../assets/colors';
 
 
 class DeckCard extends Component {
-  handleClick = () => {
+  onPress = () => {
     this.props.navigation.navigate('Deck', {
       flashcards: this.props.flashcards,
       id: this.props.id,
@@ -16,11 +16,11 @@ class DeckCard extends Component {
     return (
       <TouchableHighlight
         style={styles.card}
-        onPress={this.handleClick}
+        onPress={this.onPress}
       >
         <View>
           <Text style={styles.title}>{this.props.title}</Text>
-          <Text>{`${this.props.flashcards.length} cards`}</Text>
+          <Text>{`${this.props.flashcards} cards`}</Text>
         </View>
       </TouchableHighlight>
     )

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, View, FlatList, Text } from 'react-native';
+import { View, FlatList, Text, AsyncStorage, Button } from 'react-native';
 import DeckCard from './DeckCard';
 import { fetchData, storeData } from '../utils/api';
 import PropTypes from 'prop-types';
 
 const list = [
   {
-    id: 'comida',
+    id: 0,
     title: 'Comida',
     flashcards: [
       {
@@ -24,7 +24,7 @@ const list = [
     ]
   },
   {
-    id: 'animais',
+    id: 1,
     title: 'Animais',
     flashcards: [
       {
@@ -40,14 +40,30 @@ const list = [
 ]
 
 class List extends Component {
+  constructor(props) {
+    super(props);
+
+    this.updateRenderAfterNavigation = this.props.navigation.addListener('willFocus', () => {
+      this.fetchData();
+    });
+  }
+
   state = {
     loading: false,
     list: [],
   }
 
+  clearAsyncStorage = async() => {
+    AsyncStorage.clear();
+  }
+
+  componentWillMount() {
+    this.updateRenderAfterNavigation;
+  }
+
   renderDeck = (item) => {
     return (
-      <DeckCard id={item.id} title={item.title} flashcards={item.flashcards} navigation={this.props.navigation} />
+      <DeckCard id={item.id} key={item.id} title={item.title} flashcards={item.flashcards.length} navigation={this.props.navigation} />
     )
   }
 
@@ -86,11 +102,12 @@ class List extends Component {
       )
     } else {
       return (
-        <View style={{ marginVertical: 5 }}>
+        <View>
           <FlatList
             data={this.state.list}
             renderItem={({item}) => this.renderDeck(item)}
             />
+            <Button title="Clear Async Storage" onPress={this.clearAsyncStorage}></Button>
         </View>
       )
     }
