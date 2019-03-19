@@ -1,20 +1,49 @@
 import React, { Component } from 'react';
-import { Animated, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import colors from '../assets/colors';
 
 
 class DeckCard extends Component {
+  handleClick = () => {
+    this.props.navigation.navigate('Deck', {
+      flashcards: this.props.flashcards,
+      id: this.props.id,
+      title: this.props.title,
+    });
+  }
+
   render() {
     return (
-      <View>
-        <TouchableHighlight>
-          <View>
-            <Text>{this.props.title}</Text>
-            <Text>{`${this.props.flashcards} Cartões`}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <TouchableHighlight
+        style={styles.card}
+        onPress={this.handleClick}
+      >
+        <View>
+          <Text style={styles.title}>{this.props.title}</Text>
+          <Text>{`${this.props.flashcards.length} cards`}</Text>
+        </View>
+      </TouchableHighlight>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.white,
+    borderRadius: 5,
+    elevation: 2,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  },
+  title: {
+    fontWeight: "bold",
+  }
+});
 
 export default DeckCard;

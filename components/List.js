@@ -42,12 +42,12 @@ const list = [
 class List extends Component {
   state = {
     loading: false,
-    list: {},
+    list: [],
   }
 
   renderDeck = (item) => {
     return (
-      <DeckCard id={item.id} title={item.title} flashcards={item.flashcards.length} navigation={this.props.navigation} />
+      <DeckCard id={item.id} title={item.title} flashcards={item.flashcards} navigation={this.props.navigation} />
     )
   }
 

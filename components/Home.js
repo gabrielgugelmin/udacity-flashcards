@@ -7,7 +7,6 @@ class Home extends Component {
    return (
     <View>
       <View>
-        <Text>Teste</Text>
         <List navigation={this.props.navigation} />
       </View>
     </View>
