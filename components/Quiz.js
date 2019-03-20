@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import QuizComp from './QuizComp';
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -7,9 +8,11 @@ class Quiz extends Component {
   };
 
   render() {
+    const id = this.props.navigation.getParam('id');
+
     return (
       <View>
-        <Text>Quiz component</Text>
+        <QuizComp id={id} navigation={this.props.navigation} />
       </View>
     );
   }

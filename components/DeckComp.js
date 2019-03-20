@@ -24,7 +24,11 @@ import PropTypes from 'prop-types';
      flashcards: 0,
    }
 
-   startQuiz = () => {}
+   startQuiz = () => {
+    this.props.navigation.navigate('Quiz', {
+      id: this.state.id,
+    });
+   }
 
    addCard = () => {}
 
