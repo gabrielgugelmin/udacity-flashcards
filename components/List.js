@@ -13,14 +13,17 @@ const list = [
       {
         question: 'Pizza é a comida mais democrática do mundo?',
         answer: 'Sim!',
+        expected: true,
       },
       {
         question: 'Comer salada faz bem para saúde?',
         answer: 'Sim!',
+        expected: true,
       },
       {
-        question: 'Beterraba é horrível?',
-        answer: 'Sim!',
+        question: 'Beterraba é gostosa?',
+        answer: 'Não!',
+        expected: false,
       }
     ]
   },
@@ -32,10 +35,12 @@ const list = [
       {
         question: 'Cachorros tem 4 patas?',
         answer: 'Sim!',
+        expected: true,
       },
       {
         question: 'Gatos latem?',
         answer: 'Não, eles miam.',
+        expected: false,
       }
     ]
   }

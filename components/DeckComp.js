@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, Text } from 'react-native';
 import { fetchData } from '../utils/api';
 import DeckCard from './DeckCard';
 import PropTypes from 'prop-types';
@@ -54,6 +54,7 @@ import PropTypes from 'prop-types';
      return (
        <View key={this.state.id}>
          <View>
+          <Text>{this.state.id}</Text>
           <DeckCard
             flashcards={this.state.flashcards}
             id={this.state.id}
