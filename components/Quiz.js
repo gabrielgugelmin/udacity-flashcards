@@ -8,21 +8,18 @@ class Quiz extends Component {
   };
 
   state = {
+    answers: [],
+    correct: 0,
+    final: false,
     flashcards: [],
     position: 0,
     showAnswer: false,
-    answers: [],
-    final: false,
-    correct: 0,
   }
 
   fetchFlashcards = () => {
     const id = this.props.navigation.getParam('id');
-    // console.log('fetchFlashcards', id);
     fetchData(data => {
-      // let flashcards = JSON.parse(data).flashcards.filter(item => item.id === id).flashcards;
       const flashcards = JSON.parse(data)[id].flashcards;
-      // console.log(flashcards);
       this.setState({ flashcards });
     });
   }
@@ -41,23 +38,30 @@ class Quiz extends Component {
   }
 
   submitAnswer = (answer) => {
-    console.log(answer);
     this.setState(prevState => {
       const theEnd = (this.state.flashcards.length === prevState.position + 1) || false;
-      // console.log(prevState.answers.push(answer));
-      console.log(prevState.flashcards[prevState.position].expected);
       const expected = prevState.flashcards[prevState.position].expected;
       const isAnswerCorrect = (expected === answer) ? 1 : 0;
 
       return {
         ...prevState,
-        position: prevState.position + 1,
-        correct: prevState.correct + isAnswerCorrect,
-        showAnswer: false,
         answers: [...prevState.answers, answer],
+        correct: prevState.correct + isAnswerCorrect,
         final: theEnd,
+        position: prevState.position + 1,
+        showAnswer: false,
       }
     })
+  }
+
+  newQuiz = () => {
+    this.setState({
+      answers: [],
+      correct: 0,
+      final: false,
+      position: 0,
+      showAnswer: false,
+    });
   }
 
   render() {
@@ -72,8 +76,8 @@ class Quiz extends Component {
         {
           this.state.final ? (
             <View>
-              <Text>Acabaram as pergutnas{this.state.answers.length}</Text>
-              <Text>Você acertou {`${percentage}%`}</Text>
+              <Text>You got {`${percentage}% correct!`}</Text>
+              <Button title="Restart Quiz" onPress={() => this.newQuiz() }/>
               <Button title="Back to home" onPress={() => this.props.navigation.navigate('Home') }/>
               <Button title="Back to the deck" onPress={() => this.props.navigation.goBack()}/>
             </View>
