@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { View, Button, Text, Animated } from 'react-native';
+import { StyleSheet, View, Animated } from 'react-native';
 import { fetchData } from '../utils/api';
 import DeckCard from './DeckCard';
+import Button from './Button';
 
 
 class Deck extends Component {
+  static navigationOptions = {
+    title: 'Deck',
+  };
+
   constructor(props) {
     super(props);
 
@@ -41,7 +46,7 @@ class Deck extends Component {
     fetchData(data => {
       const id = this.props.navigation.getParam('id');
       const flashcards = JSON.parse(data).filter(item => item.id === id)[0].flashcards.length;
-      this.setState({ flashcards });
+      this.setState({ id, flashcards });
     });
   }
 
@@ -67,21 +72,25 @@ class Deck extends Component {
 
     return (
       <Animated.View key={this.state.id} style={[{ transform: [{ scale: transition }] }]}>
-        <View>
+        <View style={styles.container}>
           <DeckCard
             flashcards={this.state.flashcards}
             id={this.state.id}
             navigation={this.props.navigation}
             title={this.state.title}
           />
-        </View>
-        <View>
           <Button title={'Add Card'} onPress={this.addCard} />
-          <Button title={'Start Quiz'} onPress={this.startQuiz} />
+          <Button title={'Start Quiz'} onPress={this.startQuiz} disabled={!this.state.flashcards}/>
         </View>
       </Animated.View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+  },
+});
 
 export default Deck;

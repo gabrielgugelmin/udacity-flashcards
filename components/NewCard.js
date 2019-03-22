@@ -4,6 +4,10 @@ import RadioForm from 'react-native-simple-radio-button';
 import { fetchData, storeData } from '../utils/api';
 
 class NewCard extends Component {
+  static navigationOptions = {
+    title: 'New Card',
+  };
+
   state = {
     answer: '',
     expected: true,

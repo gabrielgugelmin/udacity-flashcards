@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { fetchData } from '../utils/api';
+import Button from './Button';
+import colors from '../assets/colors';
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -19,7 +21,7 @@ class Quiz extends Component {
   fetchFlashcards = () => {
     const id = this.props.navigation.getParam('id');
     fetchData(data => {
-      const flashcards = JSON.parse(data)[id].flashcards;
+      const flashcards = JSON.parse(data).filter(item => item.id === id)[0].flashcards;
       this.setState({ flashcards });
     });
   }
@@ -72,7 +74,7 @@ class Quiz extends Component {
     const percentage = Math.floor((correct / flashcards.length) * 100);
 
     return (
-      <View>
+      <View style={styles.container}>
         {
           this.state.final ? (
             <View>
@@ -83,15 +85,15 @@ class Quiz extends Component {
             </View>
           ) : (
             <View>
-              <Text>{`${position + 1}/${flashcards.length}`}</Text>
+              <Text style={styles.position}>{`${position + 1}/${flashcards.length}`}</Text>
               { this.state.showAnswer ? (
-                <Text>{answer}</Text>
+                <Text style={styles.text}>{answer}</Text>
               ) : (
-                <Text>{question}</Text>
+                <Text style={styles.text}>{question}</Text>
               )}
-                <Button title={(this.state.showAnswer) ? 'Show question' : 'Show answer'} onPress={this.showAnswer}/>
-                <Button title="Correct" onPress={() => this.submitAnswer(true)} />
-                <Button title="Incorrect" onPress={() => this.submitAnswer(false)} />
+                <Button title={(this.state.showAnswer) ? 'Show question' : 'Show answer'} onPress={this.showAnswer} buttonClass='link' />
+                <Button title="Correct" onPress={() => this.submitAnswer(true)} buttonClass='green'/>
+                <Button title="Incorrect" onPress={() => this.submitAnswer(false)} buttonClass='red' />
             </View>
           )
         }
@@ -99,5 +101,24 @@ class Quiz extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+  },
+  text: {
+    color: colors.black,
+    marginBottom: 10,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  position: {
+    color: colors.blue2,
+    fontSize: 32,
+    marginBottom: 30,
+    marginTop: 30,
+    textAlign: 'center',
+  }
+});
 
 export default Quiz;

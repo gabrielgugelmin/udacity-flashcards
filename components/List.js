@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, AsyncStorage, Button } from 'react-native';
+import { View, FlatList, Text, AsyncStorage, StyleSheet } from 'react-native';
 import DeckCard from './DeckCard';
 import { fetchData, storeData } from '../utils/api';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 const list = [
   {
@@ -114,7 +115,6 @@ class List extends Component {
             data={this.state.list}
             renderItem={({item}) => this.renderDeck(item)}
             />
-            <Button title="Clear Async Storage" onPress={this.clearAsyncStorage}></Button>
         </View>
       )
     }

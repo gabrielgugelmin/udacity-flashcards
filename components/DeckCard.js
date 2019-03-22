@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import colors from '../assets/colors';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 class DeckCard extends Component {
@@ -19,8 +20,9 @@ class DeckCard extends Component {
         onPress={this.onPress}
       >
         <View>
+          <MaterialCommunityIcons name="cards-outline" size={24} style={styles.icon} />
           <Text style={styles.title}>{this.props.title}</Text>
-          <Text>{`${this.props.flashcards} cards`}</Text>
+          <Text style={styles.desc}>{`${this.props.flashcards} cards`}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -29,20 +31,26 @@ class DeckCard extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.gray2,
     borderRadius: 5,
-    elevation: 2,
-    marginHorizontal: 10,
-    marginVertical: 5,
-    paddingHorizontal: 10,
+    elevation: 1,
+    marginVertical: 8,
+    paddingHorizontal: 15,
     paddingVertical: 15,
-    shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
   },
   title: {
-    fontWeight: "bold",
+    fontSize: 20,
+    color: colors.blue,
+    fontWeight: "300",
+  },
+  desc: {
+    fontSize: 16,
+    color: colors.blue2,
+    fontWeight: "300",
+  },
+  icon: {
+    color: colors.green,
+    marginRight: 15,
   }
 });
 
