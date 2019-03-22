@@ -79,8 +79,8 @@ class Deck extends Component {
             navigation={this.props.navigation}
             title={this.state.title}
           />
-          <Button title={'Add Card'} onPress={this.addCard} />
-          <Button title={'Start Quiz'} onPress={this.startQuiz} disabled={!this.state.flashcards}/>
+          <Button title={'Novo Card'} onPress={this.addCard} />
+          <Button title={'Começar Quiz'} onPress={this.startQuiz} disabled={!this.state.flashcards}/>
         </View>
       </Animated.View>
     )

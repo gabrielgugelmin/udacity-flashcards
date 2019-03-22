@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Button from './Button';
 import List from './List';
+import { setNotification } from '../utils/notification';
+import colors from '../assets/colors';
 
 class Home extends Component {
   static navigationOptions = {
@@ -15,6 +17,9 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View>
+          <Text style={styles.title}>Escolha seu deck para começar:</Text>
+        </View>
         <View style={styles.list}>
           <List navigation={this.props.navigation} style={styles.list}/>
         </View>
@@ -34,8 +39,12 @@ const styles = StyleSheet.create({
   list: {
     flex: 1
   },
-  button: {
-    // flex: 1,
+  title: {
+    color: colors.blue2,
+    fontSize: 32,
+    marginBottom: 30,
+    marginTop: 30,
+    textAlign: 'center',
   }
 });
 

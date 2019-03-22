@@ -6,7 +6,7 @@ import colors from '../assets/colors';
 
 class AddDeck extends Component {
   static navigationOptions = {
-    title: 'Add Deck',
+    title: 'Novo Deck',
   };
 
   state = {
@@ -50,7 +50,7 @@ class AddDeck extends Component {
            value={this.state.title}
            style={styles.input}
          />
-       <Button title="Add" onPress={this.onPress} ></Button>
+       <Button title="Adicionar" onPress={this.onPress} ></Button>
       </View>
     )
   }

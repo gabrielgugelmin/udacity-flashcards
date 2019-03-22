@@ -19,10 +19,14 @@ class DeckCard extends Component {
         style={styles.card}
         onPress={this.onPress}
       >
-        <View>
-          <MaterialCommunityIcons name="cards-outline" size={24} style={styles.icon} />
-          <Text style={styles.title}>{this.props.title}</Text>
-          <Text style={styles.desc}>{`${this.props.flashcards} cards`}</Text>
+        <View style={styles.box}>
+          <View style={styles.iconBox}>
+            <MaterialCommunityIcons name="cards-outline" size={36} style={styles.icon} />
+          </View>
+          <View style={styles.textBox}>
+            <Text style={styles.title}>{this.props.title}</Text>
+            <Text style={styles.desc}>{`${this.props.flashcards} cards`}</Text>
+          </View>
         </View>
       </TouchableHighlight>
     )
@@ -51,7 +55,16 @@ const styles = StyleSheet.create({
   icon: {
     color: colors.green,
     marginRight: 15,
-  }
+  },
+  box: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconBox: {
+    marginRight: 10,
+  },
+  textBox: {}
+
 });
 
 export default DeckCard;

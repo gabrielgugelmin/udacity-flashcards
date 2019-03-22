@@ -78,10 +78,10 @@ class Quiz extends Component {
         {
           this.state.final ? (
             <View>
-              <Text>You got {`${percentage}% correct!`}</Text>
-              <Button title="Restart Quiz" onPress={() => this.newQuiz() }/>
-              <Button title="Back to home" onPress={() => this.props.navigation.navigate('Home') }/>
-              <Button title="Back to the deck" onPress={() => this.props.navigation.goBack()}/>
+              <Text style={styles.position}>Você acertou {`${percentage}%!`}</Text>
+              <Button title="Tentar novamente" onPress={() => this.newQuiz() }/>
+              <Button title="Voltar para home" buttonClass="ghost" onPress={() => this.props.navigation.navigate('Home') }/>
+              <Button title="Voltar para o deck" buttonClass="ghost" onPress={() => this.props.navigation.goBack()}/>
             </View>
           ) : (
             <View>
@@ -91,9 +91,9 @@ class Quiz extends Component {
               ) : (
                 <Text style={styles.text}>{question}</Text>
               )}
-                <Button title={(this.state.showAnswer) ? 'Show question' : 'Show answer'} onPress={this.showAnswer} buttonClass='link' />
-                <Button title="Correct" onPress={() => this.submitAnswer(true)} buttonClass='green'/>
-                <Button title="Incorrect" onPress={() => this.submitAnswer(false)} buttonClass='red' />
+                <Button title={(this.state.showAnswer) ? 'Mostrar pergunta' : 'Mostrar resposta'} onPress={this.showAnswer} buttonClass='link' />
+                <Button title="Verdadeiro" onPress={() => this.submitAnswer(true)} buttonClass='green'/>
+                <Button title="Falso" onPress={() => this.submitAnswer(false)} buttonClass='red' />
             </View>
           )
         }

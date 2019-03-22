@@ -12,8 +12,8 @@ class Button extends Component {
 
   render() {
     const { title, disabled, children, buttonClass } = this.props;
-    const buttonStyle = (buttonClass) ? ([button[buttonClass]] || [button.button] ) : [button.button];
-    const textStyle = (buttonClass) ? ([text[buttonClass]] || [text.button] ) : [text.button];
+    const buttonStyle = (buttonClass) ? ([button[buttonClass]] || [button.default] ) : [button.default];
+    const textStyle = (buttonClass) ? ([text[buttonClass]] || [text.default] ) : [text.default];
 
     buttonStyle.push(button[buttonClass]);
     textStyle.push(text[buttonClass]);
@@ -39,7 +39,7 @@ const button = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
   },
-  button: {
+  default: {
     backgroundColor: colors.blue,
     borderRadius: 5,
     marginVertical: 10,
@@ -58,6 +58,13 @@ const button = StyleSheet.create({
     backgroundColor: colors.red,
     borderRadius: 5,
     marginVertical: 10,
+  },
+  ghost: {
+    backgroundColor: colors.white,
+    borderColor: colors.blue,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginVertical: 10,
   }
 });
 const text = StyleSheet.create({
@@ -67,7 +74,7 @@ const text = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 15,
   },
-  button: {
+  default: {
     color: colors.gray2,
     fontSize: 16,
     fontWeight: '300',
@@ -80,7 +87,7 @@ const text = StyleSheet.create({
     marginVertical: 15,
   },
   green: {
-    color: colors.gray2,
+    color: colors.blue,
     marginHorizontal: 5,
     marginVertical: 15,
   },
@@ -89,6 +96,13 @@ const text = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 15,
   },
+  ghost: {
+    color: colors.blue,
+    fontSize: 16,
+    fontWeight: '300',
+    marginHorizontal: 5,
+    marginVertical: 15,
+  }
 });
 
 const styles = StyleSheet.create({

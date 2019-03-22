@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
-import RadioForm from 'react-native-simple-radio-button';
+import { Text, View, TextInput, StyleSheet } from 'react-native';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import Button from './Button';
 import { fetchData, storeData } from '../utils/api';
+import colors from '../assets/colors';
 
 class NewCard extends Component {
   static navigationOptions = {
-    title: 'New Card',
+    title: 'Novo Card',
   };
 
   state = {
@@ -13,8 +15,8 @@ class NewCard extends Component {
     expected: true,
     question: '',
     radio: [
-      { label: 'True', value: true },
-      { label: 'False', value: false }
+      { label: 'Verdadeira', value: true },
+      { label: 'Falsa', value: false }
     ],
   }
 
@@ -47,36 +49,61 @@ class NewCard extends Component {
 
   render() {
     return (
-      <View>
-        <View>
-          <Text>Question{this.state.id}</Text>
+      <View style={styles.container}>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>Pergunta:</Text>
           <TextInput
-             autoFocus={true}
-             onChangeText={(question) => this.setState({question})}
-             value={this.state.question}
-           />
+            style={styles.input}
+            autoFocus={true}
+            onChangeText={(question) => this.setState({ question })}
+            value={this.state.question}
+          />
         </View>
-        <View>
-          <Text>Answer</Text>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>Resposta:</Text>
           <TextInput
-             onChangeText={(answer) => this.setState({answer})}
-             value={this.state.answer}
-           />
+            style={styles.input}
+            onChangeText={(answer) => this.setState({ answer })}
+            value={this.state.answer}
+          />
         </View>
-        <View>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>A resposta esperada da pergunta é:</Text>
           <RadioForm
             radio_props={this.state.radio}
+            buttonColor={colors.blue}
+            labelColor={colors.black}
             initial={0}
-            onPress={(value) => {this.setState({expected: value})}}
-            formHorizontal={true}
+            onPress={(value) => { this.setState({ expected: value }) }}
+            formHorizontal={false}
           />
         </View>
         <View>
-          <Button title="Add" onPress={this.onPress} />
+          <Button title="Adicionar" onPress={this.onPress} />
         </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+  },
+  input: {
+    borderColor: colors.blue,
+    borderRadius: 5,
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+  },
+  label: {
+    color: colors.black,
+    marginBottom: 10,
+  },
+  formControl: {
+    marginBottom: 15,
+  },
+});
 
 export default NewCard;
