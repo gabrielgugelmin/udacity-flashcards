@@ -10,6 +10,10 @@ class Home extends Component {
     title: 'Home',
   };
 
+  componentDidMount() {
+    setNotification();
+ }
+
   addDeck = () => {
     this.props.navigation.navigate('AddDeck');
   }

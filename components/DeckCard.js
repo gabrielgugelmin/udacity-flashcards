@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
   },
   icon: {
-    color: colors.green,
+    color: colors.blue,
     marginRight: 15,
   },
   box: {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { fetchData } from '../utils/api';
+import { clearLocalNotification, setLocalNotification } from '../utils/notification';
 import Button from './Button';
 import colors from '../assets/colors';
 
@@ -28,6 +29,8 @@ class Quiz extends Component {
 
   componentDidMount() {
     this.fetchFlashcards();
+
+    clearLocalNotification().then(setLocalNotification);
   }
 
   showAnswer = () => {
