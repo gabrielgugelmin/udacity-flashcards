@@ -14,7 +14,7 @@ class AddDeck extends Component {
   }
 
   onPress = () => {
-    if (this.state.title.length) {
+    if (this.state.title.trim().length) {
       fetchData(data => {
         let deck = {};
 

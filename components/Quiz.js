@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { fetchData } from '../utils/api';
-import { clearLocalNotification, setLocalNotification } from '../utils/notification';
+import QuizResult from './QuizResult';
 import Button from './Button';
 import colors from '../assets/colors';
 
@@ -29,8 +29,6 @@ class Quiz extends Component {
 
   componentDidMount() {
     this.fetchFlashcards();
-
-    clearLocalNotification().then(setLocalNotification);
   }
 
   showAnswer = () => {
@@ -80,12 +78,7 @@ class Quiz extends Component {
       <View style={styles.container}>
         {
           this.state.final ? (
-            <View>
-              <Text style={styles.position}>Você acertou {`${percentage}%!`}</Text>
-              <Button title="Tentar novamente" onPress={() => this.newQuiz() }/>
-              <Button title="Voltar para home" buttonClass="ghost" onPress={() => this.props.navigation.navigate('Home') }/>
-              <Button title="Voltar para o deck" buttonClass="ghost" onPress={() => this.props.navigation.goBack()}/>
-            </View>
+            <QuizResult percentage={percentage} newQuiz={this.newQuiz} navigation={this.props.navigation}></QuizResult>
           ) : (
             <View>
               <Text style={styles.position}>{`${position + 1}/${flashcards.length}`}</Text>

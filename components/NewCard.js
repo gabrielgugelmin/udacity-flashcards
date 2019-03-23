@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import RadioForm from 'react-native-simple-radio-button';
 import Button from './Button';
 import { fetchData, storeData } from '../utils/api';
 import colors from '../assets/colors';
@@ -23,7 +23,7 @@ class NewCard extends Component {
   onPress = () => {
     const { question, answer, expected } = this.state;
 
-    if (question.length && answer.length) {
+    if (question.trim().length && answer.trim().length) {
       fetchData(data => {
         if (data) {
           const id = this.props.navigation.getParam('id');
