@@ -54,7 +54,7 @@ class NewCard extends Component {
           <Text style={styles.label}>Pergunta:</Text>
           <TextInput
             style={styles.input}
-            autoFocus={true}
+            autoFocus
             onChangeText={(question) => this.setState({ question })}
             value={this.state.question}
           />

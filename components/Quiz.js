@@ -22,7 +22,7 @@ class Quiz extends Component {
   fetchFlashcards = () => {
     const id = this.props.navigation.getParam('id');
     fetchData(data => {
-      const flashcards = JSON.parse(data).filter(item => item.id === id)[0].flashcards;
+      const flashcards = JSON.parse(data).find(item => item.id === id).flashcards;
       this.setState({ flashcards });
     });
   }
@@ -32,11 +32,8 @@ class Quiz extends Component {
   }
 
   showAnswer = () => {
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        showAnswer: !prevState.showAnswer,
-      }
+    this.setState({
+      showAnswer: !this.state.showAnswer,
     })
   }
 
@@ -44,7 +41,7 @@ class Quiz extends Component {
     this.setState(prevState => {
       const theEnd = (this.state.flashcards.length === prevState.position + 1) || false;
       const expected = prevState.flashcards[prevState.position].expected;
-      const isAnswerCorrect = (expected === answer) ? 1 : 0;
+      const isAnswerCorrect = expected === answer;
 
       return {
         ...prevState,
